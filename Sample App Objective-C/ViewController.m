@@ -39,32 +39,13 @@
     Didomi *didomi = [Didomi shared];
     
     if (@available(iOS 14, *)) {
-        // Here, we show the ATT permission then the CMP notice if the user accepts the ATT permission, see:
-        // https://developers.didomi.io/cmp/mobile-sdk/ios/app-tracking-transparency-ios-14#show-the-att-permission-then-the-cmp-notice-if-the-user-accepts-the-att-permission
-        // You may want to show the CMP notice then the ATT permission if the user gives consent in the CMP notice instead, see:
-        // https://developers.didomi.io/cmp/mobile-sdk/ios/app-tracking-transparency-ios-14#show-the-cmp-notice-then-the-att-permission-if-the-user-gives-consent-in-the-cmp-notice
-        // You may also want to show the CMP notice whatever the ATT status
+        // Here we show the Didomi notice after the ATT prompt whatever the ATT status.
+        // You may want to do the following instead:
+        // - Show the CMP notice then the ATT permission if the user gives consent in the CMP notice (https://developers.didomi.io/cmp/mobile-sdk/ios/app-tracking-transparency-ios-14#show-the-cmp-notice-then-the-att-permission-if-the-user-gives-consent-in-the-cmp-notice)
+        // - Show the ATT permission then the CMP notice if the user accepts the ATT permission (https://developers.didomi.io/cmp/mobile-sdk/ios/app-tracking-transparency-ios-14#show-the-att-permission-then-the-cmp-notice-if-the-user-accepts-the-att-permission)
         [ATTrackingManager requestTrackingAuthorizationWithCompletionHandler:^(ATTrackingManagerAuthorizationStatus status) {
-            switch(status) {
-                case ATTrackingManagerAuthorizationStatusAuthorized:
-                    // Show the Didomi CMP notice to collect consent from the user
-                    [didomi setupUIWithContainerController:self];
-                    break;
-                case ATTrackingManagerAuthorizationStatusDenied:
-                    // The user denied ATT permission, deny user consent for all purposes/vendors in the Didomi CMP as well
-                    [didomi setUserDisagreeToAll];
-                    break;
-                case ATTrackingManagerAuthorizationStatusRestricted:
-                    // ATT is restricted on the device so the user was not asked for a choice (https://developer.apple.com/documentation/apptrackingtransparency/attrackingmanager/authorizationstatus/restricted)
-                    // Show the Didomi CMP notice to collect consent from the user
-                    [didomi setupUIWithContainerController:self];
-                    break;
-                case ATTrackingManagerAuthorizationStatusNotDetermined:
-                    // This is not supposed to happen
-                    // Show the Didomi CMP notice to collect consent from the user
-                    [didomi setupUIWithContainerController:self];
-                    break;
-            }
+            // Show the Didomi CMP notice to collect consent from the user
+            [didomi setupUIWithContainerController:self];
         }];
     } else {
         // Show the Didomi CMP notice to collect consent from the user as iOS < 14 (no ATT available)
