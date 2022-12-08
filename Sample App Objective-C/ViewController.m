@@ -96,6 +96,7 @@
                                 request:request
                       completionHandler:^(GADInterstitialAd *ad, NSError *error) {
         if (error) {
+            self.interstitial = nil; // Will reset the cached ad (when error is `No ad to show`)
             NSLog(@"Didomi Sample App - Failed to load interstitial ad with error: %@", [error localizedDescription]);
             return;
         }
