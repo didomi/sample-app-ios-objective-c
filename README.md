@@ -1,8 +1,8 @@
-#  Didomi - iOS App Sample (Objective-C)
+#  Didomi - iOS Sample App (Objective-C)
 
 ## Description
 
-**This app sample demonstrates how to implement Didomi in a simple Xcode project using Objective-C.**
+**This sample app demonstrates how to implement Didomi in a simple Xcode project using Objective-C.**
 
 In particular, it shows how to:
 * Condition a custom vendor to consent
