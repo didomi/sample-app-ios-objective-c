@@ -34,11 +34,10 @@ xcuserdata
 Carthage/Build
 
 # files used to do the cocoapods verification
-PodTests/TestProject/Podfile.lock
-PodTests/TestProject/Pods/Manifest.lock
-PodTests/XCFrameworkTestProject/Pods/
-PodTests/XCFrameworkTestProject/Podfile.lock
-PodTests/XCFrameworkTestProject/Pods/Manifest.lock
+/Podfile.lock
+
+# Pods
+Pods/
 
 # Swiftlint
 swiftlint.rb
