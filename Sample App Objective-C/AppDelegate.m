@@ -46,7 +46,7 @@
 }
 
 - (void)loadVendor {
-    NSString *vendorId = @"c:customven-gPVkJxXD";
+    NSString *vendorId = @"customven-gPVkJxXD";
     Didomi *didomi = [Didomi shared];
     DDMUserStatus *userStatus = [didomi getUserStatus];
 
